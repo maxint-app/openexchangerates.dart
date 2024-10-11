@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:intl/intl.dart';
-import 'package:openexchangerates/src/constants.dart';
-import 'package:openexchangerates/src/models/models.dart';
+import 'package:open_exchange_rates_client/src/constants.dart';
+import 'package:open_exchange_rates_client/src/models/models.dart';
 
 class OpenExchangeRatesClient {
   final String appId;
@@ -83,12 +82,12 @@ class OpenExchangeRatesClient {
   }
 
   Future<Map<String, String>> currencies({
-    bool show_inactive = false,
+    bool showInactive = false,
   }) async {
     final response = await dio.get(
       '/currencies.json',
       queryParameters: {
-        'show_inactive': show_inactive,
+        'show_inactive': showInactive,
       },
       options: Options(responseType: ResponseType.json),
     );

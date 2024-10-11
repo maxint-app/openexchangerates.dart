@@ -1,39 +1,36 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# OpenExchangeRates Dart
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+A Dart library for accessing the [Open Exchange Rates API](https://openexchangerates.org/).
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+## Install
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Run following command to install the package.
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```bash
+$ dart pub add open_exchange_rates_client
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'package:open_exchange_rates_client/open_exchange_rates_client.dart';
+
+void main() async {
+  final client =
+      OpenExchangeRatesClient(appId: "<YOUR_APP_ID>");
+
+  final latestData = await client.latest();
+
+  final historicalData = await client.historical(
+    date: DateTime.now().subtract(Duration(days: 1)),
+    base: 'EUR',
+  );
+
+  print("Latest data: ${latestData.toJson()}");
+  print("Historical data: ${historicalData.toJson()}");
+}
 ```
 
-## Additional information
+## License
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+[MIT](/LICENSE)
